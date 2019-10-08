@@ -3,5 +3,5 @@
     $port = "3306";
     $username = "root";
     $password = "mysql";
-    $dbName = "tyre_town";
+    $dbName = "assignment";
 ?>

@@ -6,13 +6,14 @@
      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
      <meta name="description" content="">
      <meta name="author" content="">
+
      <title>Tyre Town</title>
 
      <!-- Bootstrap core CSS -->
      <link rel="stylesheet" href="css/bootstrap.min.css">
      <link rel="stylesheet" href="css/bootstrap-grid.min.css">
      <link rel="stylesheet" href="css/bootstrap-reboot.min.css">
-     <link rel="stylesheet" href="css/style.css">
+     <link rel="stylesheet" href="css/main.css">
 
      <!-- error handling function -->
      <script>  //error handling function + test in line 10
@@ -46,59 +47,6 @@
 
 
  </nav>
-
- <style>
-
-     .collapsible {
-         background-color: #eee;
-         color: #444;
-         cursor: pointer;
-         padding: 18px;
-         width: 100%;
-         border: none;
-         text-align: left;
-         outline: none;
-         font-size: 15px;
-         border-radius: 20px;
-     }
-
-     .active, .collapsible:hover {
-         background-color: #ccc;
-     }
-
-     /* Style the collapsible content.*/
-     .content {
-         padding: 0 18px;
-         background-color: #f1f1f1;
-         max-height: 0;
-         overflow: hidden;
-         transition: max-height 0.4s ease-out;
-         border-radius: 30px;
-
-     }
-     .collapsible:after {
-         content: '\02795'; /* Unicode character for "plus" sign (+) */
-         font-size: 30px;
-         color: white;
-         float: right;
-         margin-left: 5px;
-         border-radius: 20px;
-     }
-
-     .active:after {
-         content: "\2796"; /* Unicode character for "minus" sign (-) */
-
-     }
-
-     .footer{
-         width: 100%;
-         background-color: grey;
-         color: white;
-         text-align: center;
-
-     }
-
- </style>
 
    <!-- Page content -->
     <div class="container">
@@ -574,24 +522,7 @@
 
                 <div class="footer fixed-bottom">TyreTown 2018, Dev Group D</div>
 
-    <script>
-        var coll = document.getElementsByClassName("collapsible");
-        var i;
-
-        for (i= 0; i < coll.length; i++) {
-            coll[i].addEventListener("click", function() {
-                this.classList.toggle("active");
-                var content = this.nextElementSibling;
-                if (content.style.maxHeight) {
-                    content.style.maxHeight = null;
-                } else {
-                    content.style.maxHeight = content.scrollHeight + "px";
-                }
-            });
-        }
-    </script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
                     integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
                     crossorigin="anonymous">
             </script>
@@ -604,5 +535,5 @@
                     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
                     crossorigin="anonymous">
             </script>
-            <script src="script/scripts.js"></script>
+            <script src="scripts/scripts.js"></script>
  </body>
