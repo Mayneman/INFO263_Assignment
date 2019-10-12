@@ -15,17 +15,6 @@
      <link rel="stylesheet" href="css/bootstrap-reboot.min.css">
      <link rel="stylesheet" href="css/main.css">
 
-     <!-- error handling function -->
-     <script>  //error handling function + test in line 10
-         onerror = errorHandler;
-         function errorHandler(message, link, line) {
-             message = "Error Encountered:\n\n";
-             message += "URL: " + link + "\n";
-             message += "Line: " + line + "\n";
-             alert(message);
-             return true;
-         }
-     </script>
  </head>
  <body>
 
@@ -64,11 +53,7 @@
         <br/>
 
 
-        <?php
-        require_once('./request/search_request2.php');
-        ?>
-
-        <?php
+        <?php require_once('./request/search_request2.php');
         if (!empty($_POST['input'])){
             if($row = mysqli_fetch_array($query))
             ?>
@@ -102,7 +87,6 @@
                             <td data-label="Odometer Reading"><?php echo $row['ODOMETER READING'];?></td>
 
                         </tr>
-                        <?php /*} */?>
                 </table>
             </div>
             </div>
@@ -119,15 +103,11 @@
                 */?>
 
         <?php
-        if (empty($_POST['input'])){
-        }
-        else{if($row = mysqli_fetch_array($query))
-            ?>
+            if (!empty($_POST['input'])){
+                if ($row = mysqli_fetch_array($query))
+                    ?>
 
             <br/>
-
-
-
             <button class="collapsible"><h3>Invoice</h3></button>
                     <div class="content">
                         <div class="col-lg-12">
@@ -169,8 +149,6 @@
 
         <?php
         require_once('./request/search_request3.php');
-        ?>
-        <?php
         if (!empty($_POST['input'])){
         if($row = mysqli_fetch_array($query))
             ?>
@@ -209,8 +187,6 @@
 
         <?php
         require_once('./request/search_request4.php');
-        ?>
-        <?php
         if (!empty($_POST['input'])){
         if($row = mysqli_fetch_array($query))
         ?>
@@ -519,7 +495,6 @@
 
                 <br/>
                 <br/>
-
                 <div class="footer fixed-bottom">TyreTown 2018, Dev Group D</div>
 
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"

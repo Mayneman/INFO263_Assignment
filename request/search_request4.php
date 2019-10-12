@@ -75,9 +75,6 @@ if (isset($_POST['submitButton'])){
     $query2 .= "WHERE invoice_id LIKE '%" .$search_term."%' ";
 
 }
-/*if ($query2 -> num_rows = 0) {
-    echo '0';
-}*/
 
 $query = mysqli_query($conn, $query2) or die(mysqli_error($conn));
 ?>

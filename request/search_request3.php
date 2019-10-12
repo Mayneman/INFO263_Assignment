@@ -2,8 +2,6 @@
 
 require_once("./request/Connection.php");
 
-
-
 $query2 =  "SELECT 
                   technician_name AS 'TECHNICIAN NAME', inspection_date_time AS 'INSPECTION TIME/DATE', branch_name AS 'BRANCH NAME',
 		          branch_phone AS 'BRANCH PHONE', branch_email AS 'BRANCH EMAIL', branch_address AS 'BRANCH ADDRESS',
@@ -20,13 +18,9 @@ $query2 =  "SELECT
                 
             ";
 
-
-
-
 if (isset($_POST['submitButton'])){
     $search_term = mysqli_real_escape_string($conn, $_POST['input']);
     $query2 .= "WHERE invoice.invoice_id LIKE '%" .$search_term."%' ";
-
 }
 
 $query = mysqli_query($conn, $query2) or die(mysqli_error($conn));

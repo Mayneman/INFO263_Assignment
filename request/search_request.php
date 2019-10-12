@@ -2,8 +2,6 @@
 
 require_once("./request/Connection.php");
 
-
-
 $query2 =  "SELECT 
                     invoice.invoice_id AS 'TAX INVOICE NUMBER', invoice.description AS 'SERVICE DESCRIPTION', 
                     invoice.quantity AS 'QUANTITY', invoice.unit_price AS 'UNIT PRICE', round(quantity * unit_price, 2) AS 'AMOUNT', 
@@ -15,15 +13,9 @@ $query2 =  "SELECT
             on invoice.customer_id = owner.owner_id
             ";
 
-
-
-
 if (isset($_POST['submitButton'])){
     $search_term = mysqli_real_escape_string($conn, $_POST['input']);
-
-
     $query2 .= "WHERE invoice_id LIKE '%" .$search_term."%' ";
-
 }
 
 $query = mysqli_query($conn, $query2) or die(mysqli_error($conn));
@@ -33,6 +25,5 @@ $query = mysqli_query($conn, $query2) or die(mysqli_error($conn));
         '</td><td>' . $row['VEHICLE MODEL'] . '</td><td>' . $row['VEHICLE MAKE'] . '</td><td>' . $row['YEAR'] . '</td><td>' . $row['BODY TYPE'] .
         '</td><td>' . $row['CHASSIS NUMBER'] . '</td><td>' . $row['CHASSIS NUMBER'] . '</td><tr>';
 }*/
-
 
 ?>

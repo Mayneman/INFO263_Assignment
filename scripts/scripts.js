@@ -13,3 +13,12 @@ for (i= 0; i < coll.length; i++) {
         }
     });
 }
+
+onerror = errorHandler;
+function errorHandler(message, link, line) {
+    message = "Error Encountered:\n\n";
+    message += "URL: " + link + "\n";
+    message += "Line: " + line + "\n";
+    alert(message);
+    return true;
+}
