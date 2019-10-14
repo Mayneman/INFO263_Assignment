@@ -470,7 +470,7 @@
                     <tr>
                         <td class="table-no-underline noShow">&nbsp;</td>
                         <td class="table-column-head orientations">Right</td>
-                        <td data-label="Before"><?php echo $row['47'];?></td>
+                        <td data-label="Before" ><?php echo $row['47'];?></td>
                         <td data-label="Target" class="target">33°00' +/-1°30'</td>
                         <td data-label="Actual"><?php echo $row['48'];?></td>
                     </tr>
@@ -511,4 +511,5 @@
                     crossorigin="anonymous">
             </script>
             <script src="scripts/scripts.js"></script>
+                <script>rangeDetector()</script>
  </body>

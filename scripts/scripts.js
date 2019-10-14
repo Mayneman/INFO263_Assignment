@@ -22,3 +22,22 @@ function errorHandler(message, link, line) {
     alert(message);
     return true;
 }
+
+// 33°00' +/-1°30'
+
+function rangeDetector(){
+    try {
+        var tables = document.getElementsByClassName("alignment");
+        for(var i=0; i<tables.length;i++){
+            var body = tables[i].getElementsByTagName('tbody');
+            for(var j=0; i<tables.length;j++){
+
+            }
+        }
+    } catch (e) {
+        console.log(e);
+    }
+
+    // range = range.replace(/°/g,".").replace(/'/g,"").split(" +/-");
+    // console.log(range);
+}
