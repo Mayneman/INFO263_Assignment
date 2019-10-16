@@ -20,10 +20,4 @@ if (isset($_POST['submitButton'])){
 
 $query = mysqli_query($conn, $query2) or die(mysqli_error($conn));
 
-/*while ($row = mysqli_fetch_array($query)){
-    echo '<tr><td>' . $row['NAME'] . '</td><td>' . $row['EMAIL'] . '</td><td>' . $row['PHONE'] . '</td><td>' . $row['VEHICLE REGISTRATION'] .
-        '</td><td>' . $row['VEHICLE MODEL'] . '</td><td>' . $row['VEHICLE MAKE'] . '</td><td>' . $row['YEAR'] . '</td><td>' . $row['BODY TYPE'] .
-        '</td><td>' . $row['CHASSIS NUMBER'] . '</td><td>' . $row['CHASSIS NUMBER'] . '</td><tr>';
-}*/
-
 ?>
