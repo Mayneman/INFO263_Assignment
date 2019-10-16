@@ -38,11 +38,13 @@
         <div class="col-lg-12 ">
             <h2 class="mt-5 text-center">Tyre Town Invoice Search</h2>
         </div>
+        <!--Query Box-->
          <form method="post" action="index.php">
              <div class="float-mid"><input type="text" name="input" size="25" id="receiptID" placeholder="Enter Invoice Number">
                  <input type="submit" name="submitButton" value="Submit">
              </div>
          </form>
+        <!--Customer Information Query and Table-->
         <?php require_once('./request/search_request2.php');
         if (!empty($_POST['input'])){
             $row = mysqli_fetch_array($query);
@@ -80,15 +82,17 @@
                 </table>
             </div>
             </div>
+
         <?php
             }
+//      Invoice Information Request and Table
         require_once('./request/search_request.php');
             if (!empty($_POST['input'])){
                 if ($row = mysqli_fetch_array($query))
                     ?>
             <br/>
-            <button class="collapsible"><h3>Invoice</h3></button>
-                    <div class="content">
+            <button class="collapsible" aria-expanded="false" aria-controls="invoice"><h3>Invoice</h3></button>
+                    <div class="content" id="invoice">
                         <div class="col-lg-12">
                             <table>
                                 <thead>
@@ -120,16 +124,15 @@
                             </table>
                     </div>
                 </div>
-        <?php } ?>
-
-        <?php
+        <?php }
+//      Branch/Garage Query and Table
         require_once('./request/search_request3.php');
         if (!empty($_POST['input'])){
             $row = mysqli_fetch_array($query)
             ?>
             <br/>
-            <button class="collapsible"><h3>Garage Information</h3></button>
-            <div class="content">
+            <button class="collapsible" aria-expanded="false" aria-controls="garageinformation"><h3>Garage Information</h3></button>
+            <div class="content" id="garageinformation">
             <div class="col-lg-12">
                 <table>
                         <thead>
@@ -156,23 +159,21 @@
             </div>
             </div>
 
-        <?php } ?>
-
-        <?php
+        <?php }
         require_once('./request/search_request4.php');
         if (!empty($_POST['input'])){
             $row = mysqli_fetch_array($query)
         ?>
-
         <br/>
-
-        <button class="collapsible"><h3>Alignment Information</h3></button>
-        <div class="content">
+        <!--Alignment Information Query and Table-->
+        <button class="collapsible" aria-expanded="false" aria-controls="alignmentinfo"><h3>Alignment Information</h3></button>
+        <div class="content" id="alignmentinfo">
         <header>Rear Axle</header>
             <div class="col-lg-12">
+                <button class="collapsible" aria-expanded="false" aria-controls="rearcamber"><h5>Camber</h5></button>
+                <div class="content" id="rearcamber">
                 <table class="alignment">
                     <thead>
-                    <th class="maxwidth-title">Camber</th>
                     <th>&nbsp;</th>
                     <th>Before</th>
                     <th>Target</th>
@@ -180,31 +181,31 @@
                     </thead>
                     <tbody class="alignment-graph">
                     <tr class="alignment-graph">
-                        <td data-label="Camber" class="table-no-underline background noPad">&nbsp;</td>
                         <td class="table-column-head orientations">Left</td>
-                        <td data-label="Before"><?= $row['1'];?></td>
+                        <td data-label="Before" onclick="rangeDetector(-0.4,0.3,this)"><?= $row['1'];?></td>
                         <td data-label="Target" class="table-no-underline target">-0°40' +/-0°30'</td>
-                        <td data-label="Actual"><?= $row['2'];?></td>
+                        <td data-label="Actual" onclick="rangeDetector(-0.4,0.3,this)"><?= $row['2'];?></td>
                     </tr>
                     <tr>
-                        <td class="table-no-underline noShow">&nbsp;</td>
                         <td class="table-column-head">Right</td>
-                        <td data-label="Before" style="color: green"><?= $row['3'];?></td>
+                        <td data-label="Before" onclick="rangeDetector(-0.4,0.3,this)"><?= $row['3'];?></td>
                         <td class="noShow target"></td>
-                        <td data-label="Actual"><?= $row['4'];?></td>
+                        <td data-label="Actual" onclick="rangeDetector(-0.4,0.3,this)"><?= $row['4'];?></td>
                     </tr>
                     <tr>
-                        <td class="table-no-underline noShow">&nbsp;</td>
                         <td class="table-column-head">Cross</td>
-                        <td data-label="Before" onclick="this.style = rangeDetector(0,0.3, '-1.55mm')" ><?= $row['5'];?></td>
+                        <td data-label="Before" onclick="rangeDetector(0,0.3, this)" ><?= $row['5'];?></td>
                         <td data-label="Target" class="target">0°00' +/-0°30'</td>
-                        <td class="underPadding bottomTD" data-label="Actual"><?= $row['6'];?></td>
+                        <td class="underPadding bottomTD" data-label="Actual" onclick="rangeDetector(0,0.3,this)"><?= $row['6'];?></td>
                     </tr>
                     </tbody>
                 </table>
+                </div>
+                <button class="collapsible" aria-expanded="false" aria-controls="reartoe"><h5>Toe</h5></button>
+                <div class="content" id="reartoe">
                 <table class="alignment">
+
                     <thead>
-                    <th class="maxwidth-title">Toe</th>
                     <th>&nbsp;</th>
                     <th>Before</th>
                     <th>Target</th>
@@ -212,49 +213,47 @@
                     </thead>
                     <tbody class="alignment-graph">
                     <tr class="alignment-graph">
-                        <td data-label="Toe"class="table-no-underline background">&nbsp;</td>
                         <td class="table-column-head orientations">Left</td>
-                        <td data-label="Before"><?= $row['7'];?></td>
+                        <td data-label="Before" onclick="rangeDetector(1.5,1,this)"><?= $row['7'];?></td>
                         <td data-label="Target" class="table-no-underline target">1.5mm +/-1.00</td>
-                        <td data-label="Actual"><?= $row['8'];?></td>
+                        <td data-label="Actual" onclick="rangeDetector(1.5,1,this)"><?= $row['8'];?></td>
                     </tr>
                     <tr>
-                        <td class="table-no-underline noShow">&nbsp;</td>
                         <td class="table-column-head orientations">Right</td>
-                        <td data-label="Before"><?= $row['9'];?></td>
+                        <td data-label="Before" onclick="rangeDetector(1.5,1,this)"><?= $row['9'];?></td>
                         <td class="noShow target"></td>
-                        <td data-label="Actual"><?= $row['10'];?></td>
+                        <td data-label="Actual" onclick="rangeDetector(1.5,1,this)"><?= $row['10'];?></td>
                     </tr>
                     <tr>
-                        <td class="table-no-underline noShow">&nbsp;</td>
                         <td class="table-column-head orientations">Total</td>
-                        <td data-label="Before"><?= $row['11'];?></td>
+                        <td data-label="Before" onclick="rangeDetector(3.0,2.0,this)"><?= $row['11'];?></td>
                         <td data-label="Target" class="target">3mm +/-2.0mm</td>
-                        <td class="underPadding bottomTD" data-label="Actual"><?= $row['12'];?></td>
+                        <td class="underPadding bottomTD" data-label="Actual" onclick="rangeDetector(3.0,2.0,this)"><?= $row['12'];?></td>
                     </tr>
                     </tbody>
                 </table>
+                </div>
+                <button class="collapsible" aria-expanded="false" aria-controls="geodriveaxis"><h5>Geometrical Driving Axis</h5></button>
+                <div class="content" id="geodriveaxis">
                 <table class="alignment">
                     <thead>
-                    <th class="maxwidth-title">Geometrical driving axis</th>
-                    <th>&nbsp;</th>
                     <th>Before</th>
                     <th>Target</th>
                     <th>Actual</th>
                     </thead>
                     <tbody class="alignment-graph">
                     <tr class="alignment-graph">
-                        <td data-label="Geometrical Driving Axis" class="table-no-underline noRightBorder background">&nbsp;</td>
-                        <td class="table-column-head noRightBorder maxwidth-empty-second orientations noShow">&nbsp;</td>
-                        <td data-label="Before"><?= $row['13'];?></td>
+                        <td data-label="Before" onclick="rangeDetector(0,0,this)"><?= $row['13'];?></td>
                         <td data-label="Target" class="target">0°00'</td>
-                        <td data-label="Actual"><?= $row['14'];?></td>
+                        <td data-label="Actual" onclick="rangeDetector(0,0,this)"><?= $row['14'];?></td>
                     </tbody>
                 </table>
+                </div>
                 <header>Front Axle</header>
+                <button class="collapsible" aria-expanded="false" aria-controls="frontcamber"><h5>Camber</h5></button>
+                <div class="content" id="frontcamber">
                 <table class="alignment">
                     <thead>
-                    <th class="maxwidth-title">Camber</th>
                     <th>&nbsp;</th>
                     <th>Before</th>
                     <th>Target</th>
@@ -262,31 +261,30 @@
                     </thead>
                     <tbody class="alignment-graph">
                     <tr class="alignment-graph">
-                        <td data-label="Camber" class="table-no-underline background">&nbsp;</td>
                         <td class="table-column-head orientations">Left</td>
-                        <td data-label="Before"><?=$row['15']?></td>
+                        <td data-label="Before" onclick="rangeDetector(0,0.3,this)"><?=$row['15']?></td>
                         <td data-label="Target" class="table-no-underline target">0°00' +/-0°30'</td>
-                        <td data-label="Actual"><?= $row['16']?></td>
+                        <td data-label="Actual" onclick="rangeDetector(0,0.3,this)"><?= $row['16']?></td>
                     </tr>
                     <tr>
-                        <td class="table-no-underline noShow">&nbsp;</td>
                         <td class="table-column-head orientations">Right</td>
-                        <td data-label="Before"><?= $row['17']?></td>
+                        <td data-label="Before" onclick="rangeDetector(0,0.3,this)"><?= $row['17']?></td>
                         <td class="noShow target"></td>
-                        <td data-label="Actual"><?= $row['18'];?></td>
+                        <td data-label="Actual" onclick="rangeDetector(0,0.3,this)"><?= $row['18'];?></td>
                     </tr>
                     <tr>
-                        <td class="table-no-underline noShow">&nbsp;</td>
                         <td class="table-column-head orientations">Cross</td>
-                        <td data-label="Before"><?= $row['19'];?></td>
+                        <td data-label="Before" onclick="rangeDetector(0,0.3,this)"><?= $row['19'];?></td>
                         <td data-label="Target" class="target">0°00' +/-0°30'</td>
-                        <td class="underPadding bottomTD" data-label="Actual"><?= $row['20'];?></td>
+                        <td class="underPadding bottomTD" data-label="Actual" onclick="rangeDetector(0,0.3,this)"><?= $row['20'];?></td>
                     </tr>
                     </tbody>
                 </table>
+                </div>
+                <button class="collapsible" aria-expanded="false" aria-controls="frontcaster"><h5>Caster</h5></button>
+                <div class="content" id="frontcaster">
                 <table class="alignment">
                     <thead>
-                    <th class="maxwidth-title">Caster</th>
                     <th>&nbsp;</th>
                     <th>Before</th>
                     <th>Target</th>
@@ -294,31 +292,30 @@
                     </thead>
                     <tbody class="alignment-graph">
                     <tr class="alignment-graph">
-                        <td data-label="Caster" class="table-no-underline background">&nbsp;</td>
                         <td class="table-column-head orientations">Left</td>
-                        <td data-label="Before"><?= $row['21'];?></td>
+                        <td data-label="Before" onclick="rangeDetector(2.35,0.3,this)"><?= $row['21'];?></td>
                         <td data-label="Target" class="table-no-underline target">2°35' +/-0°30'</td>
-                        <td data-label="Actual"><?= $row['22'];?></td>
+                        <td data-label="Actual" onclick="rangeDetector(2.35,0.3,this)"><?= $row['22'];?></td>
                     </tr>
                     <tr>
-                        <td class="table-no-underline noShow">&nbsp;</td>
                         <td class="table-column-head orientations">Right</td>
-                        <td data-label="Before"><?= $row['23'];?></td>
+                        <td data-label="Before" onclick="rangeDetector(2.35,0.3,this)"><?= $row['23'];?></td>
                         <td class="noShow target"></td>
-                        <td data-label="Actual"><?= $row['24'];?></td>
+                        <td data-label="Actual" onclick="rangeDetector(2.35,0.3,this)"><?= $row['24'];?></td>
                     </tr>
                     <tr>
-                        <td class="table-no-underline noShow">&nbsp;</td>
                         <td class="table-column-head orientations">Cross</td>
-                        <td data-label="Before"><?= $row['25'];?></td>
+                        <td data-label="Before" onclick="rangeDetector(0,0.3,this)"><?= $row['25'];?></td>
                         <td data-label="Target" class="target">0°00' +/-0°30'</td>
-                        <td class="underPadding bottomTD" data-label="Actual"><?= $row['26'];?></td>
+                        <td class="underPadding bottomTD" data-label="Actual" onclick="rangeDetector(0,0.3,this)"><?= $row['26'];?></td>
                     </tr>
                     </tbody>
                 </table>
+                </div>
+                <button class="collapsible" aria-expanded="false" aria-controls="sai"><h5>SAI</h5></button>
+                <div class="content" id="sai">
                 <table class="alignment">
                     <thead>
-                    <th class="maxwidth-title">SAI</th>
                     <th>&nbsp;</th>
                     <th>Before</th>
                     <th>Target</th>
@@ -326,31 +323,30 @@
                     </thead>
                     <tbody class="alignment-graph">
                     <tr class="alignment-graph">
-                        <td data-label="SAI" class="table-no-underline background">&nbsp;</td>
                         <td class="table-column-head orientations">Left</td>
-                        <td data-label="Before"><?= $row['27'];?></td>
+                        <td data-label="Before" onclick="rangeDetector(12.4,0.45,this)"><?= $row['27'];?></td>
                         <td data-label="Target" class="table-no-underline target">12°40' +/-0°45</td>
-                        <td data-label="Actual"><?= $row['28'];?></td>
+                        <td data-label="Actual" onclick="rangeDetector(12.4,0.45,this)"><?= $row['28'];?></td>
                     </tr>
                     <tr>
-                        <td class="table-no-underline noShow">&nbsp;</td>
                         <td class="table-column-head orientations">Right</td>
-                        <td data-label="Before"><?= $row['29'];?></td>
+                        <td data-label="Before" onclick="rangeDetector(12.4,0.45,this)"><?= $row['29'];?></td>
                         <td class="noShow target"></td>
-                        <td data-label="Actual"><?= $row['30'];?></td>
+                        <td data-label="Actual" onclick="rangeDetector(12.4,0.45,this)"><?= $row['30'];?></td>
                     </tr>
                     <tr>
-                        <td class="table-no-underline noShow">&nbsp;</td>
                         <td class="table-column-head orientations">Cross</td>
-                        <td data-label="Before"><?= $row['31'];?></td>
+                        <td data-label="Before" onclick="rangeDetector(0,0,this)"><?= $row['31'];?></td>
                         <td data-label="Target" class="target">0°00'</td>
-                        <td class="underPadding bottomTD" data-label="Actual"><?= $row['32'];?></td>
+                        <td class="underPadding bottomTD" data-label="Actual" onclick="rangeDetector(0,0,this)"><?= $row['32'];?></td>
                     </tr>
                     </tbody>
                 </table>
+                </div>
+                <button class="collapsible" aria-expanded="false" aria-controls="trackdiffangle"><h5>Track Differential Angle</h5></button>
+                <div class="content" id="trackdiffangle">
                 <table class="alignment">
                     <thead>
-                    <th class="maxwidth-title">Track differential angle</th>
                     <th>&nbsp;</th>
                     <th>Before</th>
                     <th>Target</th>
@@ -358,24 +354,24 @@
                     </thead>
                     <tbody class="alignment-graph">
                     <tr class="alignment-graph">
-                        <td data-label="Track Differential Angle" class="table-no-underline background">&nbsp;</td>
                         <td class="table-column-head orientations">Left</td>
-                        <td data-label="Before"><?= $row['33'];?></td>
+                        <td data-label="Before" onclick="rangeDetector(0,0,this)"><?= $row['33'];?></td>
                         <td class="table-no-underline noShow target"></td>
-                        <td data-label="Actual"><?= $row['34'];?></td>
+                        <td data-label="Actual" onclick="rangeDetector(0,0,this)"><?= $row['34'];?></td>
                     </tr>
                     <tr>
-                        <td class="table-no-underline noShow">&nbsp;</td>
                         <td class="table-column-head orientations">Right</td>
-                        <td data-label="Before"><?= $row['35'];?></td>
+                        <td data-label="Before" onclick="rangeDetector(0,0,this)"><?= $row['35'];?></td>
                         <td class="noShow target"></td>
-                        <td class="underPadding bottomTD" data-label="Actual"><?= $row['36'];?></td>
+                        <td class="underPadding bottomTD" data-label="Actual" onclick="rangeDetector(0,0,this)"><?= $row['36'];?></td>
                     </tr>
                     </tbody>
                 </table>
+                </div>
+                <button class="collapsible" aria-expanded="false" aria-controls="fronttoe"><h5>Toe</h5></button>
+                <div class="content" id="fronttoe">
                 <table class="alignment">
                     <thead>
-                    <th class="maxwidth-title">Toe</th>
                     <th>&nbsp;</th>
                     <th>Before</th>
                     <th>Target</th>
@@ -383,31 +379,30 @@
                     </thead>
                     <tbody class="alignment-graph">
                     <tr class="alignment-graph">
-                        <td data-label="Toe" class="table-no-underline background">&nbsp;</td>
                         <td class="table-column-head orientations">Left</td>
-                        <td data-label="Before"><?= $row['37'];?></td>
+                        <td data-label="Before" onclick="rangeDetector(0.5,1.0,this)"><?= $row['37'];?></td>
                         <td data-label="Target" class="table-no-underline target">0.5mm +/-1.0mm</td>
-                        <td data-label="Actual"><?= $row['38'];?></td>
+                        <td data-label="Actual" onclick="rangeDetector(0.5,1.0,this)"><?= $row['38'];?></td>
                     </tr>
                     <tr>
-                        <td class="table-no-underline noShow">&nbsp;</td>
                         <td class="table-column-head orientations">Right</td>
-                        <td data-label="Before"><?= $row['39'];?></td>
+                        <td data-label="Before" onclick="rangeDetector(0.5,1.0,this)"><?= $row['39'];?></td>
                         <td class="noShow target"></td>
-                        <td data-label="Actual"><?= $row['40'];?></td>
+                        <td data-label="Actual" onclick="rangeDetector(0.5,1.0,this)"><?= $row['40'];?></td>
                     </tr>
                     <tr>
-                        <td class="table-no-underline noShow">&nbsp;</td>
                         <td class="table-column-head orientations">Cross</td>
-                        <td data-label="Before"><?= $row['41'];?></td>
+                        <td data-label="Before" onclick="rangeDetector(1.0,2.0,this)"><?= $row['41'];?></td>
                         <td data-label="Target">1mm +/-2.0mm</td>
-                        <td class="underPadding bottomTD" data-label="Actual"><?= $row['42'];?></td>
+                        <td class="underPadding bottomTD" data-label="Actual" onclick="rangeDetector(1.0,2.0,this)"><?= $row['42'];?></td>
                     </tr>
                     </tbody>
                 </table>
+                </div>
+                <button class="collapsible" aria-expanded="false" aria-controls="frontsetback"><h5>Setback</h5></button>
+                <div class="content" id="frontsetback">
                 <table class="alignment">
                     <thead>
-                    <th class="maxwidth-title">Setback</th>
                     <th>&nbsp;</th>
                     <th>Before</th>
                     <th>Target</th>
@@ -415,58 +410,55 @@
                     </thead>
                     <tbody class="alignment-graph">
                     <tr class="alignment-graph">
-                        <td data-label="Setback" class="table-no-underline noRightBorder background">&nbsp;</td>
                         <td class="table-column-head noRightBorder maxwidth-empty-second noShow orientations">&nbsp;</td>
-                        <td data-label="Before"><?= $row['43'];?></td>
+                        <td data-label="Before" onclick="rangeDetector(0,0,this)"><?= $row['43'];?></td>
                         <td data-label="Target" class="target">0°00'</td>
-                        <td  class="underPadding bottomTD" data-label="Actual"><?= $row['44'];?></td>
+                        <td  class="underPadding bottomTD" data-label="Actual" onclick="rangeDetector(0,0,this)"><?= $row['44'];?></td>
                     </tbody>
                 </table>
+                </div>
+                <button class="collapsible" aria-expanded="false" aria-controls="frontmaxsteeringlock"><h5>Max Steering Lock</h5></button>
+                <div class="content" id="frontmaxsteeringlock">
                 <table class="alignment">
                     <thead>
-                    <th class="maxwidth-title">Max steering lock</th>
-                    <th>&nbsp;</th>
                     <th>Before</th>
                     <th>Target</th>
                     <th>Actual</th>
                     </thead>
                     <tbody class="alignment-graph">
                     <tr class="alignment-graph">
-                        <td data-label="Max Steering Lock" class="table-no-underline background">Left Steer</td>
-                        <!--<td data-label="Left Steer" class="bigNoShow"></td>-->
                         <td class="table-column-head orientations">Left</td>
-                        <td data-label="Before"><?= $row['45'];?></td>
+                        <td data-label="Before" onclick="rangeDetector(-41.0,1.3,this)"><?= $row['45'];?></td>
                         <td data-label="Target" class="table-no-underline target">-41°00' +/-1°30'</td>
-                        <td data-label="Actual"><?= $row['46'];?></td>
+                        <td data-label="Actual" onclick="rangeDetector(-41.0,1.3,this)"><?= $row['46'];?></td>
                     </tr>
                     <tr>
-                        <td class="table-no-underline noShow">&nbsp;</td>
                         <td class="table-column-head orientations">Right</td>
-                        <td data-label="Before" ><?= $row['47'];?></td>
+                        <td data-label="Before" onclick="rangeDetector(33.0,1.3,this)"><?= $row['47'];?></td>
                         <td data-label="Target" class="target">33°00' +/-1°30'</td>
-                        <td data-label="Actual"><?= $row['48'];?></td>
+                        <td data-label="Actual" onclick="rangeDetector(33.0,1.3,this)"><?= $row['48'];?></td>
                     </tr>
                     <tr class="alignment-graph">
-                        <td class="table-no-underline background">Right Steer</td>
                         <td class="table-column-head orientations">Left</td>
-                        <td data-label="Before"><?= $row['49'];?></td>
+                        <td data-label="Before" onclick="rangeDetector(-41.0,1.3,this)"><?= $row['49'];?></td>
                         <td data-label="Target" class="table-no-underline target noShow">-41°00' +/-1°30'</td>
-                        <td data-label="Actual"><?= $row['50'];?></td>
+                        <td data-label="Actual" onclick="rangeDetector(-41.0,1.3,this)"><?= $row['50'];?></td>
                     </tr>
                     <tr>
-                        <td class="table-no-underline noShow">&nbsp;</td>
-                        <td class="table-column-head orientations">Right</td>
-                        <td data-label="Before"><?= $row['51'];?></td>
+                            <td class="table-column-head orientations">Right</td>
+                        <td data-label="Before" onclick="rangeDetector(33.0,1.3,this)"><?= $row['51'];?></td>
                         <td class="noShow target">33°00' +/-1°30'</td>
-                        <td class="underPadding bottomTD" data-label="Actual"><?= $row['52'];?></td>
+                        <td class="underPadding bottomTD" data-label="Actual" onclick="rangeDetector(33.0,1.3,this)"><?= $row['52'];?></td>
                     </tr>
                     </tbody>
                 </table>
+                </div>
 
         <?php } ?>
 
                 <br/>
                 <br/>
+                <!--End of File Footer and Import Scripts-->
                 <div class="footer fixed-bottom">TyreTown 2018, Dev Group D</div>
 
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
@@ -479,7 +471,7 @@
                     crossorigin="anonymous">
             </script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-                    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+                    integrity="sha384-JZR6Spejh5U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
                     crossorigin="anonymous">
             </script>
             <script src="scripts/scripts.js"></script>
