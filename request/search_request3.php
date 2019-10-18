@@ -1,7 +1,7 @@
 <?php
 
-require_once("./request/Connection.php");
-
+require_once("./request/connection.php");
+//Query to get information about technician and branch information.
 $query2 =  "SELECT 
                   technician_name AS 'TECHNICIAN NAME', inspection_date_time AS 'INSPECTION TIME/DATE', branch_name AS 'BRANCH NAME',
 		          branch_phone AS 'BRANCH PHONE', branch_email AS 'BRANCH EMAIL', branch_address AS 'BRANCH ADDRESS',

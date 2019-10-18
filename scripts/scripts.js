@@ -1,7 +1,7 @@
 // Keep your scripts in here
 var coll = document.getElementsByClassName("collapsible");
 var i;
-
+//Extends height on collapsible button click.
 for (i= 0; i < coll.length; i++) {
     coll[i].addEventListener("click", function() {
         this.classList.toggle("active");
@@ -28,15 +28,10 @@ function rangeDetector(base, range, element) {
     try {
         var clean = element.innerHTML.replace(/'/g, ".").replace(/mm/g, "");
         var valueFloat = parseFloat(clean);
-        console.log(valueFloat);
-        console.log(base + range);
-        console.log(base - range);
         if (valueFloat <= (base + range) && valueFloat >= (base - range)) {
-            console.log("colour:green");
             element.style.backgroundColor = "lawngreen";
         } else {
             element.style.backgroundColor = "red";
-            console.log("colour:red");
         }
     }catch (e) {
         console.log(e);

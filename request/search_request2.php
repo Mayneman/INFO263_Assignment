@@ -1,6 +1,6 @@
 <?php
 
-require_once("./request/Connection.php");
+require_once("./request/connection.php");
 
 
 $query2 =  "SELECT concat(owner_fname, ' ', owner_lname) AS 'NAME', owner_email AS 'EMAIL', owner_phone AS 'PHONE',

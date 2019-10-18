@@ -1,6 +1,6 @@
 <?php
 
-require_once("./request/Connection.php");
+require_once("./request/connection.php");
 
 $query2 =  "SELECT 
                     invoice.invoice_id AS 'TAX INVOICE NUMBER', invoice.description AS 'SERVICE DESCRIPTION', 

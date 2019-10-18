@@ -1,9 +1,9 @@
 <?php
 
-require_once("./request/Connection.php");
+require_once("./request/connection.php");
 
 
-
+//Query to obtain all measurement data for vehicle alignment.
 $query2 =  "SELECT rear_axle_camber_left_before AS '1', 
 	rear_axle_camber_left_actual  AS '2', 
 	rear_axle_camber_right_before AS '3', 

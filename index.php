@@ -421,6 +421,7 @@
                 <div class="content" id="frontmaxsteeringlock">
                 <table class="alignment">
                     <thead>
+                    <th>&nbsp;</th>
                     <th>Before</th>
                     <th>Target</th>
                     <th>Actual</th>
